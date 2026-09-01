@@ -26,14 +26,17 @@ contract SimpleStorage {
 
     person[] public listofpeople;
 
+    mapping(string => uint256) public nameToFavouriteNumber;
+
     function retreive() public view returns (uint256) {
         // view, pure  with this keyword not allow modify anything
         return myfavouriteNumber;
     }
 
-
+    //calldata, memory, storage
     function addPerson(string memory name, uint256 _favouriteNumber) public {
-// person memory newPerson = person(_favouriteNumber,name);
-        listofpeople.push(person(_favouriteNumber,name));
+        // person memory newPerson = person(_favouriteNumber,name);
+        listofpeople.push(person(_favouriteNumber, name));
+        nameToFavouriteNumber[name] = _favouriteNumber;
     }
 }
