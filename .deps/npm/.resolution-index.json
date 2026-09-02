@@ -6,5 +6,13 @@
         "file": "SimpleStorage.sol"
       }
     }
+  },
+  "StorageFactory.sol": {
+    "__sources__": {
+      "StorageFactory.sol": {
+        "content": "// SPDX-License-Identifier: MIT\n\npragma solidity ^0.8.18;\n\ncontract SimpleStorage {\n    // Basic type : boolean, uint , int, address, bytes\n    //bool hasFavouriteNumber = true;\n    //uint256 favouriteNumber; // 0\n    //int256 number = -90;\n    //string favouritetext = \"88 i love this number;\";\n    //bytes32 favouriteBytes32 = \"cat\";\n    uint256 public myfavouriteNumber; // when no value is provided it will be 0\n    //uint256[] listofFavouriteNumber;\n\n    struct person {\n        uint _favouriteNumber;\n        string name;\n    }\n\n    function store(uint256 _favouriteNumber) public {\n        myfavouriteNumber = _favouriteNumber;\n        myfavouriteNumber = myfavouriteNumber + 1;\n    }\n\n    //person public myfriend = person(7, \"patrick\");\n    // person public youtfriend = person(9, \"neer\");\n\n    person[] public listofpeople;\n\n    mapping(string => uint256) public nameToFavouriteNumber;\n\n    function retreive() public view returns (uint256) {\n        // view, pure  with this keyword not allow modify anything\n        return myfavouriteNumber;\n    }\n\n    //calldata, memory, storage\n    function addPerson(string memory name, uint256 _favouriteNumber) public {\n        // person memory newPerson = person(_favouriteNumber,name);\n        listofpeople.push(person(_favouriteNumber, name));\n        nameToFavouriteNumber[name] = _favouriteNumber;\n    }\n}\ncontract StorageFactory {\n    //uint256 public favouriteNumber\n    //type\n    SimpleStorage public simplestorage;\n\n    function createSimpleStorageContract() public {\n        simplestorage = new SimpleStorage();\n    }\n}\n",
+        "file": "StorageFactory.sol"
+      }
+    }
   }
 }
